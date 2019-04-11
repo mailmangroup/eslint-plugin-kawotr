@@ -36,6 +36,31 @@ const ruleTester = new RuleTester({
 	}
 });
 
+function buildError( error, en, cn ) {
+
+	let message = '';
+
+	switch ( error ) {
+
+		case 1:
+			message = `Missing Translation: Call to kawo.tr with an incorrect cn parameter: kawo.tr( ${en}, ${cn} )`;
+			break;
+
+		case 2:
+			message = `Missing Translation: Call to kawo.tr with identical en and cn parameters: kawo.tr( ${en}, ${cn} )`;
+			break;
+
+		case 3:
+			message = `Missing Translation: Call to kawo.tr with filler content: kawo.tr( ${en}, ${cn} )`;
+			break;
+	}
+
+	return {
+		ruleId: 'no-invalid-params',
+		message
+	};
+}
+
 ruleTester.run( 'no-invalid-params', rule, {
 
 	valid: [
@@ -49,45 +74,27 @@ ruleTester.run( 'no-invalid-params', rule, {
 	invalid: [
 		{
 			code: `kawo.tr( 'Test' )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr with `null`, `false`, or `undefined` `cn` value',
-				type: 'CallExpression'
-			}]
+			errors: [ buildError( 1, 'Test' ) ]
 		},
 		{
 			code: `kawo.tr( 'Test', '' )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr without an empty `cn` parameter',
-				type: 'CallExpression'
-			}]
-		},
-		{
-			code: `kawo.tr( 'Test', 'Test' )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr with identical `en` and `cn` parameters',
-				type: 'CallExpression'
-			}]
+			errors: [ buildError( 1, 'Test', '' ) ]
 		},
 		{
 			code: `kawo.tr( 'Test', false )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr with `null`, `false`, or `undefined` `cn` value',
-				type: 'CallExpression'
-			}]
+			errors: [ buildError( 1, 'Test', false ) ]
 		},
 		{
 			code: `kawo.tr( 'Test', null )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr with `null`, `false`, or `undefined` `cn` value',
-				type: 'CallExpression'
-			}]
+			errors: [ buildError( 1, 'Test', null ) ]
+		},
+		{
+			code: `kawo.tr( 'Test', 'Test' )`,
+			errors: [ buildError( 2, 'Test', 'Test' ) ]
 		},
 		{
 			code: `kawo.tr( 'Test', '中文中文中文' )`,
-			errors: [{
-				message: 'Missing Translation: Call to kawo.tr with filler content',
-				type: 'CallExpression'
-			}]
+			errors: [ buildError( 3, 'Test', '中文中文中文' ) ]
 		}
 	]
 });
