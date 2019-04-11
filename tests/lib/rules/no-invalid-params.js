@@ -39,6 +39,7 @@ const ruleTester = new RuleTester({
 ruleTester.run( 'no-invalid-params', rule, {
 
 	valid: [
+		`kawo.tr( label.total.en, label.total.cn )`,
 		`kawo.tr( 'Test', '测试' )`,
 		`kawo.tr( 'Test', '测试', true )`,
 		`kawo.tr( 'Test', '中文测试中文', true )`,
