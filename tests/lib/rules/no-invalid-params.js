@@ -64,6 +64,7 @@ function buildError( error, en, cn ) {
 ruleTester.run( 'no-invalid-params', rule, {
 
 	valid: [
+		`kawo.tr( \`Top Posts Ranked by \${impressions}\`, \`根据\${impressions}排名的帖子\` )`,
 		`kawo.tr( 'Top Posts Ranked by ' + 'impressions', '根据' + '排名的帖子' )`,
 		`kawo.tr( 'Top Posts Ranked by ' + label.en, '根据' + label.cn + '排名的帖子' )`,
 		`kawo.tr( label.total.en, label.total.cn )`,
@@ -81,6 +82,10 @@ ruleTester.run( 'no-invalid-params', rule, {
 		{
 			code: `kawo.tr( 'Test', '' )`,
 			errors: [ buildError( 1, 'Test', '' ) ]
+		},
+		{
+			code: `kawo.tr( \`Top Posts Ranked by \${impressions}\`, '' )`,
+			errors: [ buildError( 1, "`Top Posts Ranked by ${impressions}`", '' ) ]
 		},
 		{
 			code: `kawo.tr( 'Test', false )`,
