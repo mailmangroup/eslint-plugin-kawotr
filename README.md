@@ -34,7 +34,8 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "kawotr/no-invalid-params": 2
+        "kawotr/no-invalid-params": 2,
+        "kawotr/no-missing-cn-keys": 2
     }
 }
 ```
