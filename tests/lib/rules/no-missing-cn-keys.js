@@ -32,7 +32,8 @@ const ruleTester = new RuleTester({
 
 			// GET STRING › DEFAULT TO CHINESE RETURN LANGUAGE
 			return ( localeObject && localeObject[ returnLang || 'cn' ] ) || false;
-		}
+		},
+		allowedMatchingValues: [ 'px' ]
 	}
 });
 
@@ -75,7 +76,9 @@ ruleTester.run( 'no-missing-cn-keys', rule, {
 		"let obj = { en: label.total.en, cn: label.total.cn }",
 		"let obj = { en: 'Test', cn: '测试' }",
 		"let obj = { en: 'Test', cn: '中文测试中文' }",
-		"let obj = { en: 'Weibo' }"
+		"let obj = { en: 'Weibo' }",
+		"let obj = { en: '100,000', cn: '100,000' }",
+		"let obj = { en: 'px', cn: 'px' }"
 	],
 
 	invalid: [

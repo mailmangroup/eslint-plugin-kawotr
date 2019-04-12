@@ -78,7 +78,8 @@ ruleTester.run( 'no-invalid-params', rule, {
 		`kawo.tr( 'Test', '测试' )`,
 		`kawo.tr( 'Test', '测试', true )`,
 		`kawo.tr( 'Test', '中文测试中文', true )`,
-		`kawo.tr( 'Weibo' )`
+		`kawo.tr( 'Weibo' )`,
+		`kawo.tr( '100,000', '100,000' )`
 	],
 
 	invalid: [
