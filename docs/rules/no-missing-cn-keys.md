@@ -1,48 +1,65 @@
-# Enforce having a proper value fro `kawo.tr`
+# Enforce that any object with an en property has a cn property
 
-This rule ensures that the `cn` value passed to `kawo.tr` is not `null`, `false`, `undefined`, `''` or the same as the `en` parameter
-so we don't miss translations in production.
+This rule ensures that any object with an `en` property also has a `cn` property.
 
 # Fail
 
 ```javascript
-kawo.tr( 'Test' )
+let text = {
+	en: 'Test',
+	cn: ''
+};
 ```
 
 ```javascript
-kawo.tr( 'Test', '' )
+let text = {
+	en: 'Test'
+};
 ```
 
 ```javascript
-kawo.tr( 'Test', 'Test' )
+let text = {
+	en: 'Test',
+	cn: 'Test'
+};
 ```
 
 ```javascript
-kawo.tr( 'Test', '中文中文中文' )
+let text = {
+	en: 'Test',
+	cn: '中文中文中文'
+};
 ```
 
 ```javascript
-kawo.tr( 'Test', false, true )
+let text = {
+	en: 'Test',
+	cn: false
+};
 ```
 
 ```javascript
-kawo.tr( 'Test', null, true )
+let text = {
+	en: 'Test',
+	cn: null
+};
 ```
 
 # Pass
 
 ```javascript
-kawo.tr( 'Test', '测试' )
-```
-
-```javascript
-kawo.tr( 'Test', '测试', true )
+let text = {
+	en: 'Test',
+	cn: '测试'
+};
 ```
 
 Single, commonly used English strings can pass if a lookup function is provided that returns a valid value based on the `en` key.
 
 ```javascript
-kawo.tr( 'Weibo' )
+let text = {
+	en: 'Weibo'
+};
 ```
 
 KAWO's lookup function for common string translations is something like this and passed through to the test's settings:
@@ -87,33 +104,53 @@ We let through:
   - Note that we will try and treat as a string by running `eval( string )` in an attempt to perform the concatenation to run against our lookup function.
 
 ```javascript
-kawo.tr( [ 'This post will be published ', h( 'strong', 'immediately' ) ] )
+let text = {
+	en: [ 'This post will be published ', h( 'strong', 'immediately' ) ]
+};
 ```
 
 ```javascript
-kawo.tr( key )
+let text = {
+	en: key
+};
 ```
 
 ```javascript
-kawo.tr( error.displayError || image.getAttribute( 'failedMsg' ) )
+let text = {
+	en: error.displayError || image.getAttribute( 'failedMsg' )
+};
 ```
 
 ```javascript
-kawo.tr( test ? 'Something' : 'Something Else', '' )
+let text = {
+	en: test ? 'Something' : 'Something Else', ''
+};
 ```
 
 ```javascript
-kawo.tr( `Top Posts Ranked by ${impressions}`, `根据${impressions}排名的帖子` )
+let text = {
+	en: `Top Posts Ranked by ${impressions}`,
+	cn: `根据${impressions}排名的帖子`
+};
 ```
 
 ```javascript
-kawo.tr( 'Top Posts Ranked by ' + 'impressions', '根据' + '排名的帖子' )
+let text = {
+	en: 'Top Posts Ranked by ' + 'impressions',
+	cn: '根据' + '排名的帖子'
+};
 ```
 
 ```javascript
-kawo.tr( 'Top Posts Ranked by ' + label.en, '根据' + label.cn + '排名的帖子' )
+let text = {
+	en: 'Top Posts Ranked by ' + label.en,
+	cn: '根据' + label.cn + '排名的帖子'
+};
 ```
 
 ```javascript
-kawo.tr( label.total.en, label.total.cn )
+let text = {
+	en: label.total.en,
+	cn: label.total.cn
+};
 ```
