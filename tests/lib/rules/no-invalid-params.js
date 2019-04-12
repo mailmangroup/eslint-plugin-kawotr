@@ -68,6 +68,8 @@ ruleTester.run( 'no-invalid-params', rule, {
 			[ 'This post will be published ', h( 'strong', 'immediately' ) ]
 		 )`,
 		`kawo.tr( key )`,
+		`kawo.tr( key.toLowerCase() )`,
+		`kawo.tr( error.displayError || image.getAttribute( 'failedMsg' ) )`,
 		`kawo.tr( test ? 'Something' : 'Something Else', '' )`,
 		`kawo.tr( \`Top Posts Ranked by \${impressions}\`, \`根据\${impressions}排名的帖子\` )`,
 		`kawo.tr( 'Top Posts Ranked by ' + 'impressions', '根据' + '排名的帖子' )`,
