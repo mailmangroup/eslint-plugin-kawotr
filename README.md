@@ -1,6 +1,13 @@
 # eslint-plugin-kawotr
 
-Check for valid uses of the kawo.tr translation function
+Check for valid uses of the kawo.tr translation function or missing `cn` keys on any object with an `en` key.
+
+It's designed to be very lenient, letting through anything that it can't properly challenge. As long as you've
+provided a `translationsLookup` function on settings, it will let through any parameter that isn't a string (i.e. variables it can't evaluate).
+
+By default, it will error if the `cn` and `en` keys match since that's likely not a valid translation.
+However, you can provide an array of values (`allowedMatchingValues`) on settings that will be allowed 
+through in the event the parameters match `allowedMatchingValues: [ ... 'px', '+', '#' ... ]`
 
 ## Installation
 
