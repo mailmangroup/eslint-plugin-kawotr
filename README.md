@@ -20,7 +20,7 @@ $ npm i eslint --save-dev
 Next, install `eslint-plugin-kawotr`:
 
 ```
-$ npm install https://github.com/fergusjordan/eslint-plugin-kawotr --save-dev
+$ npm install https://github.com/mailmangroup/eslint-plugin-kawotr --save-dev
 ```
 
 ## Usage
