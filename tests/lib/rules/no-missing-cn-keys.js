@@ -44,15 +44,15 @@ function buildError( error, en, cn ) {
 	switch ( error ) {
 
 		case 1:
-			message = `Missing Translation: Incorrect cn parameter: { en: ${en}, cn: ${cn} } `;
+			message = `Missing Translation: Incorrect cn parameter: en --> ${en}`;
 			break;
 
 		case 2:
-			message = `Missing Translation: Identical en and cn parameters: { en: ${en}, cn: ${cn} } `;
+			message = `Missing Translation: Identical en and cn parameters: en --> ${en}`;
 			break;
 
 		case 3:
-			message = `Missing Translation: cn parameter is filler content: { en: ${en}, cn: ${cn} } `;
+			message = `Missing Translation: cn parameter is filler content: en --> ${en}`;
 			break;
 	}
 

@@ -43,15 +43,15 @@ function buildError( error, en, cn ) {
 	switch ( error ) {
 
 		case 1:
-			message = `Missing Translation: Call to kawo.tr with an incorrect cn parameter: kawo.tr( ${en}, ${cn} )`;
+			message = `Missing Translation: Call to kawo.tr with an incorrect cn parameter: en --> ${en}`;
 			break;
 
 		case 2:
-			message = `Missing Translation: Call to kawo.tr with identical en and cn parameters: kawo.tr( ${en}, ${cn} )`;
+			message = `Missing Translation: Call to kawo.tr with identical en and cn parameters: en --> ${en}`;
 			break;
 
 		case 3:
-			message = `Missing Translation: Call to kawo.tr with filler content: kawo.tr( ${en}, ${cn} )`;
+			message = `Missing Translation: Call to kawo.tr with filler content: en --> ${en}`;
 			break;
 	}
 
